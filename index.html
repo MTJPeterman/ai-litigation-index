@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Litigation Index</title>
+</head>
+<body>
+    <h1>AI Litigation Index</h1>
+    <p>This table updates automatically with recent AI-related court cases and news.</p>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Case Title</th>
+                <th>Company Involved</th>
+                <th>Court/Location</th>
+                <th>Date</th>
+                <th>AI Topic</th>
+                <th>Link</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Auto-loaded content will appear here -->
+        </tbody>
+    </table>
+<script>
+fetch('litigation_index.csv')
+  .then(response => response.text())
+  .then(text => {
+    const rows = text.split('\n').slice(1);
+    let tbody = '';
+    rows.forEach(row => {
+      const cols = row.split(',');
+      if (cols.length > 1) {
+        tbody += '<tr>' + cols.map(col => `<td>${col}</td>`).join('') + '</tr>';
+      }
+    });
+    document.querySelector('tbody').innerHTML = tbody;
+  });
+</script>
+</body>
+</html>
