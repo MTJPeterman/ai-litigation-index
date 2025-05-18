@@ -1,4 +1,4 @@
-
+permissions: contents: write
 name: Update AI Litigation Index
 
 on:
